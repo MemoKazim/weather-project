@@ -20,10 +20,11 @@ check.addEventListener("click", () => {
   u_city = document.querySelector("input").value;
   Http.open("GET", getWeather(u_city));
   Http.send();
-  if (Http.status === 200) {
-    Http.onreadystatechange = (e) => {
+  console.log(Http.status);
+  Http.onreadystatechange = (e) => {
+    if (Http.status == 200) {
       let respose = JSON.parse(Http.responseText);
-
+      icon.setAttribute("style", "visibility: visible;");
       w_icon = respose.weather[0].icon;
       w_main = respose.weather[0].main;
       w_desc = respose.weather[0].description;
@@ -33,12 +34,14 @@ check.addEventListener("click", () => {
       status.innerHTML = w_desc;
       temperature.innerHTML = w_temp;
       description.innerHTML = w_desc;
-      console.log(respose.status);
-    };
-  } else {
-    city.innerHTML = "Unknown city...<br>Please try again!";
-    icon.setAttribute("style", "visibility: hidden;");
-  }
+    } else {
+      icon.setAttribute("style", "visibility: hidden;");
+      city.innerHTML = "Unknown city...<br>Please try again!";
+      status.innerHTML = "";
+      temperature.innerHTML = "";
+      description.innerHTML = "";
+    }
+  };
   s_page.classList = "";
   s_page.classList.add("s-page", "animation_show");
 });
