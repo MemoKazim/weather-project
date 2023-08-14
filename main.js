@@ -20,7 +20,6 @@ check.addEventListener("click", () => {
   u_city = document.querySelector("input").value;
   Http.open("GET", getWeather(u_city));
   Http.send();
-  console.log(Http.status);
   Http.onreadystatechange = (e) => {
     if (Http.status == 200) {
       let respose = JSON.parse(Http.responseText);
