@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Weather Project</title>
+  </head>
+  <body>
+    <div class="background-container">
+      <div class="box">
+        <div class="f-page">
+          <h1>Weather</h1>
+          <input class="city" type="text" placeholder="City" required />
+          <button class="submit" type="button">Check</button>
+        </div>
+        <div class="s-page hidden">
+          <img class="circle" src="" alt="weather-image" />
+          <h2 class="city-name"></h2>
+          <h3 class="weather-status"></h3>
+          <h3 class="weather-temperature"></h3>
+          <h3 class="weather-description"></h3>
+          <img src="/images/left-arrow.gif" alt="go-back" class="go-back" />
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
