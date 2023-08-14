@@ -20,19 +20,25 @@ check.addEventListener("click", () => {
   u_city = document.querySelector("input").value;
   Http.open("GET", getWeather(u_city));
   Http.send();
-  Http.onreadystatechange = (e) => {
-    let respose = JSON.parse(Http.responseText);
-    w_icon = respose.weather[0].icon;
-    w_main = respose.weather[0].main;
-    w_desc = respose.weather[0].description;
-    w_temp = respose.main.temp;
-    icon.setAttribute("src", `/images/${w_icon}.gif`);
-    city.innerHTML = u_city;
-    status.innerHTML = w_desc;
-    temperature.innerHTML = w_temp;
-    description.innerHTML = w_desc;
-    console.log(respose.weather[0].icon);
-  };
+  if (Http.status === 200) {
+    Http.onreadystatechange = (e) => {
+      let respose = JSON.parse(Http.responseText);
+
+      w_icon = respose.weather[0].icon;
+      w_main = respose.weather[0].main;
+      w_desc = respose.weather[0].description;
+      w_temp = respose.main.temp;
+      icon.setAttribute("src", `/images/${w_icon}.gif`);
+      city.innerHTML = u_city;
+      status.innerHTML = w_desc;
+      temperature.innerHTML = w_temp;
+      description.innerHTML = w_desc;
+      console.log(respose.status);
+    };
+  } else {
+    city.innerHTML = "Unknown city...<br>Please try again!";
+    icon.setAttribute("style", "visibility: hidden;");
+  }
   s_page.classList = "";
   s_page.classList.add("s-page", "animation_show");
 });
